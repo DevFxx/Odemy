@@ -7,6 +7,9 @@
 </script>
 
 <section class="main">
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="/background1.mp4" type="video/mp4" />
+  </video>
   <header>
     <h1>Odemy</h1>
     <button on:click={voltar}>Voltar</button>
@@ -38,7 +41,7 @@
         />
       </article>
       <article class="grup">
-        <label for="Confirmpassword">Confirmar senha</label>
+        <label for="confirmpassword">Confirmar senha</label>
         <input
           type="password"
           id="confirmpassword"
@@ -66,7 +69,7 @@
         <input type="date" id="date" aria-required="true" required />
       </article>
       <article class="grup">
-        <label for="tell">Telefone</label>
+        <label for="tel">Telefone</label>
         <input
           type="tel"
           id="tel"
@@ -102,6 +105,10 @@
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+  }
+  main {
+    background: transparent;
+    padding: 2rem 0;
   }
   header {
     display: flex;
@@ -181,8 +188,9 @@
     box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
   }
   form {
+    background-color: rgba(0, 5, 20, 0.9);
     color: #fff;
-    border-radius: 6px;
+    border-radius: 10px;
     height: auto;
     padding: 2rem 0;
     width: 280px;
@@ -194,7 +202,7 @@
     flex-direction: column;
     gap: 2rem;
     box-shadow:
-      0 20px 50px rgba(0, 20, 100, 0.7),
+      0 20px 50px rgba(0, 0, 0, 0.7),
       0 0 0 2px rgba(64, 128, 255, 0.2);
     transition: all 0.5s;
   }
@@ -206,9 +214,11 @@
     justify-content: center;
     flex-direction: column;
     gap: 5px;
+    background: transparent;
   }
   label {
     font-size: 1.5rem;
+    background: transparent;
   }
   input {
     padding: 0.4rem;
@@ -225,12 +235,30 @@
     text-decoration: underline;
     user-select: none;
     cursor: pointer;
+    background: transparent;
     transition: all 0.2s;
+  }
+  .as a {
+    color: white;
+  }
+  a {
+    background: transparent;
   }
   .as a:hover {
     color: grey;
   }
-  main {
-    padding-bottom: 5rem;
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+  .main {
+    position: relative;
+    z-index: 1;
+    color: white;
   }
 </style>

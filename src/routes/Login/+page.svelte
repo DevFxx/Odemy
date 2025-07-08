@@ -10,6 +10,9 @@
 </script>
 
 <section class="main">
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="/background1.mp4" type="video/mp4" />
+  </video>
   <header>
     <h1>Odemy</h1>
     <button on:click={voltar}>Voltar</button>
@@ -37,7 +40,7 @@
       />
     </article>
     <button type="submit">Logar</button>
-    <article class="as">
+    <article class="as" style="background: transparent;">
       <a>Esqueceu a senha?</a>
       <a href="#" on:click={account}>Não tem conta?</a>
     </article>
@@ -128,8 +131,9 @@
     box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
   }
   form {
+    background-color: rgba(0, 5, 20, 0.9);
     color: #fff;
-    border-radius: 6px;
+    border-radius: 10px;
     height: 350px;
     width: 280px;
     margin: 0 auto;
@@ -140,7 +144,7 @@
     flex-direction: column;
     gap: 2rem;
     box-shadow:
-      0 20px 50px rgba(0, 20, 100, 0.7),
+      0 20px 50px rgba(0, 0, 0, 0.7),
       0 0 0 2px rgba(64, 128, 255, 0.2);
     transition: all 0.5s;
   }
@@ -152,9 +156,11 @@
     justify-content: center;
     flex-direction: column;
     gap: 5px;
+    background: transparent;
   }
   label {
     font-size: 1.5rem;
+    background: transparent;
   }
   input {
     padding: 0.4rem;
@@ -175,8 +181,23 @@
   }
   .as a {
     color: white;
+    background: transparent;
   }
   .as a:hover {
     color: grey;
+  }
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+  }
+  .main {
+    position: relative;
+    z-index: 1;
+    color: white;
   }
 </style>
