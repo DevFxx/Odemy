@@ -1,10 +1,15 @@
 <script>
   import "../app.css";
+  import { goto } from "$app/navigation";
+
+  function redirecionar() {
+    goto("./Login");
+  }
 </script>
 
 <header>
   <h1>Odemy</h1>
-  <button>Entrar</button>
+  <button on:click={redirecionar}>Entrar</button>
 </header>
 <main>
   <p class="intro">A solução completa para ser um profissional de sucesso</p>
@@ -100,7 +105,7 @@
       />
     </div>
   </section>
-  <button>Entre agora mesmo.</button>
+  <button on:click={redirecionar}>Entre agora mesmo.</button>
 </main>
 
 <style>
@@ -120,6 +125,7 @@
   }
 
   h1 {
+    user-select: none;
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     font-weight: 800;
     background: linear-gradient(45deg, #a0d1ff, #5a9cff);
@@ -336,7 +342,6 @@
     user-select: none;
   }
 
-  /* Layout coluna com texto à esquerda e imagem à direita */
   .grup {
     display: flex;
     flex-wrap: wrap;
@@ -378,17 +383,14 @@
     user-select: none;
   }
 
-  /* Texto à esquerda, imagem à direita */
   .grup:nth-child(odd) {
     flex-direction: row;
   }
 
-  /* Imagem à esquerda, texto à direita */
   .grup:nth-child(even) {
     flex-direction: row-reverse;
   }
 
-  /* Placeholders para as imagens */
   .grup:nth-child(1) img {
     background: linear-gradient(45deg, #0a1429, #1a3b6d);
     display: flex;
