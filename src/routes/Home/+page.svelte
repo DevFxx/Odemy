@@ -6,7 +6,7 @@
     goto("../");
   }
 
-  // dados de exemplo, mova para um store ou fetch de API
+  // dados de exemplo
   export let cursos = [
     {
       tituloBanner: "Curso de Python Avançado",
@@ -23,76 +23,102 @@
       precoOriginal: 287,
     },
     {
-      tituloBanner: "Desenvolvimento Web Full Stack",
-      gradient: "linear-gradient(45deg, #8E2DE2, #4A00E0)",
-      desconto: 0,
-      titulo: "Full Stack JavaScript",
+      tituloBanner: "Curso de Python Avançado",
+      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+      desconto: 30,
+      titulo: "Python para Ciência de Dados",
       descricao:
-        "Aprenda React, Node.js, Express e MongoDB para criar aplicações web completas. Do frontend ao backend em um único curso.",
-      autor: "Maria Costa",
-      autorInicial: "MC",
-      avatarBg: "#9b59b6",
-      nota: 5.0,
-      preco: 349.9,
-      precoOriginal: null,
+        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+      autor: "Luiz Inácio",
+      autorInicial: "LI",
+      avatarBg: "#3498db",
+      nota: 4.7,
+      preco: 200.88,
+      precoOriginal: 287,
     },
     {
-      tituloBanner: "UX/UI Design Profissional",
-      gradient: "linear-gradient(45deg, #00c6ff, #0072ff)",
-      desconto: 20,
-      titulo: "Design de Interfaces Modernas",
+      tituloBanner: "Curso de Python Avançado",
+      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+      desconto: 30,
+      titulo: "Python para Ciência de Dados",
       descricao:
-        "Crie interfaces incríveis com Figma, aprenda princípios de UX, prototipagem e design responsivo para aplicativos e sites.",
-      autor: "Carlos Andrade",
-      autorInicial: "CA",
-      avatarBg: "#e74c3c",
-      nota: 4.2,
-      preco: 247.5,
-      precoOriginal: 309,
+        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+      autor: "Luiz Inácio",
+      autorInicial: "LI",
+      avatarBg: "#3498db",
+      nota: 4.7,
+      preco: 200.88,
+      precoOriginal: 287,
     },
     {
-      tituloBanner: "Marketing Digital",
-      gradient: "linear-gradient(45deg, #11998e, #38ef7d)",
-      desconto: 0,
-      titulo: "Estratégias de Marketing",
+      tituloBanner: "Curso de Python Avançado",
+      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+      desconto: 30,
+      titulo: "Python para Ciência de Dados",
       descricao:
-        "Domine SEO, Google Ads, Facebook Ads e marketing de conteúdo para impulsionar negócios e aumentar conversões.",
-      autor: "Ana Silva",
-      autorInicial: "AS",
-      avatarBg: "#2ecc71",
-      nota: 4.5,
-      preco: 289.9,
-      precoOriginal: null,
+        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+      autor: "Luiz Inácio",
+      autorInicial: "LI",
+      avatarBg: "#3498db",
+      nota: 4.7,
+      preco: 200.88,
+      precoOriginal: 287,
     },
     {
-      tituloBanner: "Desenvolvimento Mobile",
-      gradient: "linear-gradient(45deg, #f46b45, #eea849)",
-      desconto: 40,
-      titulo: "React Native Avançado",
+      tituloBanner: "Curso de Python Avançado",
+      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+      desconto: 30,
+      titulo: "Python para Ciência de Dados",
       descricao:
-        "Crie aplicativos iOS e Android com React Native. Aprenda hooks, context API, navegação e integração com APIs.",
-      autor: "Paulo Santos",
-      autorInicial: "PS",
-      avatarBg: "#f39c12",
-      nota: 4.9,
-      preco: 329.0,
-      precoOriginal: 549,
+        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+      autor: "Luiz Inácio",
+      autorInicial: "LI",
+      avatarBg: "#3498db",
+      nota: 4.7,
+      preco: 200.88,
+      precoOriginal: 287,
     },
     {
-      tituloBanner: "Cloud Computing",
-      gradient: "linear-gradient(45deg, #654ea3, #eaafc8)",
-      desconto: 0,
-      titulo: "AWS para Desenvolvedores",
+      tituloBanner: "Curso de Python Avançado",
+      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+      desconto: 30,
+      titulo: "Python para Ciência de Dados",
       descricao:
-        "Aprenda a usar serviços AWS como EC2, S3, Lambda e RDS para criar aplicações escaláveis na nuvem.",
-      autor: "Roberto Fernandes",
-      autorInicial: "RF",
-      avatarBg: "#9b59b6",
-      nota: 4.3,
-      preco: 419.9,
-      precoOriginal: null,
+        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+      autor: "Luiz Inácio",
+      autorInicial: "LI",
+      avatarBg: "#3498db",
+      nota: 4.7,
+      preco: 200.88,
+      precoOriginal: 287,
     },
+    // ... restante dos cursos (mantém o que já tens)
   ];
+
+  let players = [];
+
+  // Carregar API do YouTube
+  let tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  let firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Cria players quando API estiver pronta
+  window.onYouTubeIframeAPIReady = () => {
+    const iframes = document.querySelectorAll(".yt-iframe");
+    iframes.forEach((iframe, index) => {
+      const player = new YT.Player(iframe);
+      players[index] = player;
+
+      // Adiciona eventos de hover em cada container
+      iframe.parentNode.addEventListener("mouseenter", () => {
+        player.playVideo();
+      });
+      iframe.parentNode.addEventListener("mouseleave", () => {
+        player.pauseVideo();
+      });
+    });
+  };
 </script>
 
 <section class="main">
@@ -120,13 +146,21 @@
 
   <p class="introCurso">Nossos cursos</p>
   <div class="cards-container">
-    {#each cursos as curso}
+    {#each cursos as curso, index}
       <article class="card">
         <div class="card-header">
           <div class="card-video" style="background: {curso.gradient}">
-            <!-- <i class="fas fa-play-circle play-icon"></i>
-            {curso.tituloBanner} -->
-            <video src=""></video>
+            <iframe
+              class="yt-iframe"
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/wFIR32vN12I?enablejsapi=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
           {#if curso.desconto}
             <div class="discount-badge">-{curso.desconto}%</div>
@@ -157,7 +191,7 @@
           </div>
           <div class="price-container">
             <div>
-              <span class="price">R$ {curso.preco.toFixed(2)}</span><br/>
+              <span class="price">R$ {curso.preco.toFixed(2)}</span><br />
               {#if curso.precoOriginal}
                 <span class="original-price"
                   >R$ {curso.precoOriginal.toFixed(2)}</span
@@ -175,16 +209,205 @@
       </article>
     {/each}
   </div>
+  <section class="planos">
+    <h2>Escolha seu Plano</h2>
+    <div class="planos-container">
+      <div class="plano">
+        <h3>Semestral</h3>
+        <p class="preco">R$ 199,90</p>
 
-  <footer class="footer">
-    <p>
-      Transforme sua carreira com nossos cursos profissionais | Mais de 50.000
-      alunos satisfeitos
-    </p>
+        <button class="btn-assinar">Assinar</button>
+      </div>
+
+      <div class="plano destaque">
+        <h3>Anual</h3>
+        <p class="preco">R$ 349,90</p>
+
+        <button class="btn-assinar">Assinar</button>
+      </div>
+
+      <div class="plano">
+        <h3>Vitalício</h3>
+        <p class="preco">R$ 899,90</p>
+
+        <button class="btn-assinar">Assinar</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-contact">
+        <a href="#"><i class="bi bi-whatsapp"></i> (99) 9999-9999</a>
+        <a href="#"><i class="bi bi-envelope-at"></i> Exemple@gmail.com</a>
+      </div>
+      <p>&copy; 2025 Odemy. Todos os direitos reservados.</p>
+    </div>
   </footer>
 </section>
 
 <style>
+  footer {
+    background-color: rgba(0, 0, 0, 0.2); /* cor de fundo escura */
+    color: #fff; /* texto branco */
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+  footer a {
+    letter-spacing: 0;
+  }
+
+  .footer-container {
+    width: 100vw;
+    margin: 0 auto;
+  }
+
+  .footer-contact {
+    margin-bottom: 1rem;
+  }
+
+  .footer-contact a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .footer-contact a:hover {
+    color: #5a9cff; /* cor ao passar o mouse */
+  }
+
+  @media (max-width: 600px) {
+    .footer-contact a {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .planos {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: transparent;
+    color: #fff;
+  }
+
+  .planos h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .planos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .plano {
+    background: transparent;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 280px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .plano:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .plano h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  .plano .preco {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .plano ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    text-align: left;
+  }
+
+  .plano ul li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .plano ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .btn-assinar {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .btn-assinar:hover {
+    background: #1d4ed8;
+  }
+
+  .plano.destaque {
+    border: 2px solid #2563eb;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .planos-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  /* Usa o teu mesmo CSS, só mantive o essencial do card-video */
+
+  .main {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: transparent;
+    background: url("/background.jpeg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* header, nav, intro, video, cards-container etc... igual ao teu */
+
+  .card-video {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  iframe {
+    border: none;
+    display: block;
+  }
+
   .main {
     width: 100%;
     min-height: 100vh;
@@ -284,7 +507,7 @@
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     margin: 0 auto;
   }
 
@@ -300,9 +523,7 @@
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
-    }
-
-
+  }
 
   .card:hover {
     transform: translateY(-10px);
