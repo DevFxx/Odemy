@@ -119,6 +119,28 @@
       });
     });
   };
+
+  let faqs = [
+    {
+      question: "Quem somos?",
+      answer:
+        "O TPDPlay é uma plataforma de aulas por assinatura, totalmente voltada para prótese dentária e direcionada para técnicos e dentistas.Aqui você encontraconteúdos exclusivos sobre os mais variados tópicos do universo da prótese, como Metalurgia, Lentes de Contato, Metalo Cerâmica, entre outrosTodo mês lançamos um novo conteúdo, cada vez mais prático e didático. Temos aulas exclusivas, Lives MASTERS, Desafios, Minicursos, e muito mais!Além de Marcio Breda, Speaker Internacional, o TPDPlay conta com professores qualificados para que você aprimore suas habilidades e faça seus trabalhos com excelência.",
+    },
+    {
+      question: "Posso cancelar minha assinatura?",
+      answer: "Sim, a qualquer momento na sua área de usuário.",
+    },
+    {
+      question: "Preciso pagar taxa extra?",
+      answer: "Não. Você paga só o valor da assinatura.",
+    },
+  ];
+
+  let openIndex = null;
+
+  function toggleFAQ(index) {
+    openIndex = openIndex === index ? null : index;
+  }
 </script>
 
 <section class="main">
@@ -233,6 +255,24 @@
       </div>
     </div>
   </section>
+  <div class="faq-container">
+    <h2>Dúvidas? Dê uma olhada aqui.</h2>
+    <p>
+      Não encontrou uma resposta? Entre em contato com nosso suporte e ficaremos
+      felizes em te ajudar!
+    </p>
+    {#each faqs as faq, index}
+      <div class="faq-item" class:open={openIndex === index}>
+        <button class="faq-question" on:click={() => toggleFAQ(index)}>
+          {faq.question}
+        </button>
+
+        <div class="faq-answer">
+          <p>{faq.answer}</p>
+        </div>
+      </div>
+    {/each}
+  </div>
   <footer>
     <div class="footer-container">
       <div class="footer-contact">
@@ -245,6 +285,89 @@
 </section>
 
 <style>
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+  }
+  .faq-container h2,
+  .faq-container p {
+    text-align: center;
+  }
+  .faq-container p {
+    font-size: 1.2rem;
+  }
+  .faq-container h2 {
+    font-size: 3rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+  }
+
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 15px 0 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    color: white;
+  }
+
+  /* Ícone + e - */
+  .faq-question:before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: normal;
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.open .faq-question:before {
+    content: "−";
+    background: transparent;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease,
+      padding 0.3s ease;
+    padding-left: 40px;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 900px;
+    opacity: 1;
+    padding-bottom: 15px;
+  }
+
+  .faq-answer p {
+    margin: 0;
+    line-height: 1.6;
+    color: #dedede;
+    padding: 5px 0;
+  }
+
   footer {
     background-color: rgba(0, 0, 0, 0.2); /* cor de fundo escura */
     color: #fff; /* texto branco */
@@ -405,7 +528,7 @@
   iframe {
     border: none;
     display: block;
-    transition: .6s;
+    transition: 0.6s;
   }
   iframe:hover {
     transform: scale(1.1);
