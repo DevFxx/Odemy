@@ -10,59 +10,106 @@
   }
 </script>
 
-
-  <header>
-    <h1>Odemy</h1>
-    <button on:click={voltar}>Voltar</button>
-  </header>
-  <div class="video">
-    <video src="" controls></video>
+<header>
+  <h1>Odemy</h1>
+  <button on:click={voltar}>Voltar</button>
+</header>
+<div class="video">
+  <video src="" controls></video>
+</div>
+<form action="">
+  <article class="grup">
+    <label for="email">E-mail</label>
+    <input
+      type="email"
+      id="email"
+      aria-required="true"
+      required
+      placeholder="ex: Exemplo@gmail.com"
+    />
+  </article>
+  <article class="grup">
+    <label for="password">Senha</label>
+    <input
+      type="password"
+      id="password"
+      aria-required="true"
+      required
+      placeholder="ex: Senha123"
+      minlength="8"
+    />
+  </article>
+  <button type="submit">Logar</button>
+  <article class="as" style="background: transparent;">
+    <a>Esqueceu a senha?</a>
+    <a href="#" on:click={account}>Não tem conta?</a>
+  </article>
+</form>
+<footer>
+  <div class="footer-container">
+    <div class="footer-contact">
+      <a href="#"><i class="bi bi-whatsapp"></i> (99) 9999-9999</a>
+      <a href="#"><i class="bi bi-envelope-at"></i> Exemple@gmail.com</a>
+    </div>
+    <p>&copy; 2025 Odemy. Todos os direitos reservados.</p>
   </div>
-  <form action="">
-    <article class="grup">
-      <label for="email">E-mail</label>
-      <input
-        type="email"
-        id="email"
-        aria-required="true"
-        required
-        placeholder="ex: Exemplo@gmail.com"
-      />
-    </article>
-    <article class="grup">
-      <label for="password">Senha</label>
-      <input
-        type="password"
-        id="password"
-        aria-required="true"
-        required
-        placeholder="ex: Senha123"
-        minlength="8"
-      />
-    </article>
-    <button type="submit">Logar</button>
-    <article class="as" style="background: transparent;">
-      <a>Esqueceu a senha?</a>
-      <a href="#" on:click={account}>Não tem conta?</a>
-    </article>
-  </form>
-
+</footer>
 
 <style>
-  .video{
+  footer {
+    background-color: rgba(0, 0, 0, 0.2); /* cor de fundo escura */
+    color: #fff; /* texto branco */
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+  footer a{
+    letter-spacing: 0;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-contact {
+    margin-bottom: 1rem;
+  }
+
+  .footer-contact a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .footer-contact a:hover {
+    color:#5a9cff; /* cor ao passar o mouse */
+  }
+
+  @media (max-width: 600px) {
+    .footer-contact a {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .video {
     width: 800px;
     height: 400px;
     margin: 0 auto;
     margin-top: 2rem;
   }
-  video{
+  video {
     width: 100%;
     height: auto;
     border-radius: 8px;
   }
   .main {
     width: 100vw;
-    height:auto;
+    height: auto;
     box-sizing: border-box;
     background-image: url("/background.jpeg");
     background-position: center;
@@ -205,5 +252,4 @@
   .as a:hover {
     color: grey;
   }
-
 </style>
