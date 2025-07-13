@@ -220,15 +220,14 @@
       </div>
 
       <div class="plano destaque">
-        <h3>Anual</h3>
-        <p class="preco">R$ 349,90</p>
+        <h3>Vitalício</h3>
+        <p class="preco">R$ 899,90</p>
 
         <button class="btn-assinar">Assinar</button>
       </div>
-
       <div class="plano">
-        <h3>Vitalício</h3>
-        <p class="preco">R$ 899,90</p>
+        <h3>Anual</h3>
+        <p class="preco">R$ 349,90</p>
 
         <button class="btn-assinar">Assinar</button>
       </div>
@@ -406,6 +405,10 @@
   iframe {
     border: none;
     display: block;
+    transition: .6s;
+  }
+  iframe:hover {
+    transform: scale(1.1);
   }
 
   .main {
