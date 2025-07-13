@@ -2,7 +2,7 @@
   import "../../app.css";
   import { goto } from "$app/navigation";
   function voltar() {
-    goto("../Login");
+    goto("./");
   }
   function test() {
     goto("../Home");

@@ -2,9 +2,6 @@
   // import { GDK_BACKEND } from "./../../.svelte-kit/ambient.d.ts";
   import "../app.css";
   import { goto } from "$app/navigation";
-  function voltar() {
-    goto("../");
-  }
   function account() {
     goto("../Cadastro");
   }
@@ -12,7 +9,7 @@
 
 <header>
   <h1>Odemy</h1>
-  <button on:click={voltar}>Voltar</button>
+
 </header>
 <div class="video">
   <video src="" controls></video>
