@@ -4,6 +4,9 @@
   function voltar() {
     goto("../Login");
   }
+  function test() {
+    goto("../Home");
+  }
 </script>
 
 <section class="main">
@@ -92,7 +95,7 @@
           placeholder="ex: 111.777.999-00"
         />
       </article>
-      <button type="submit">Logar</button>
+      <button type="submit" on:click={test()}>Logar</button>
       <article class="as">
         <a href="#" on:click={voltar}>Já tem conta?</a>
       </article>
@@ -114,7 +117,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 10px 2rem;
     background: rgba(0, 5, 20, 0.6);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 30px rgba(0, 10, 80, 0.3);
@@ -123,6 +126,7 @@
     z-index: 100;
     border-bottom: 1px solid rgba(64, 128, 255, 0.2);
     animation: fadeInDown 0.8s ease-out;
+    width: 100vw;
   }
   h1 {
     user-select: none;
