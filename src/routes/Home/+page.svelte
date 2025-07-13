@@ -278,13 +278,14 @@
   }
 
   .cards-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto 3rem;
+    width: 1500px;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center;
+    align-items: center;
+    justify-content:center;
+    margin: 0 auto;
   }
 
   /* Mantém o CSS dos cards igual ao original */
@@ -292,14 +293,16 @@
   .card {
     background: #051446;
     border-radius: 15px;
-    width: 100%;
+    width: 400px;
     max-width: 400px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
-  }
+    }
+
+
 
   .card:hover {
     transform: translateY(-10px);
