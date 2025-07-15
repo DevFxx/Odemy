@@ -1,130 +1,50 @@
 <script>
   import "../../app.css";
   import { goto } from "$app/navigation";
-
+  import { onMount, onDestroy } from "svelte";
+  // Funções
   function voltar() {
     goto("../");
   }
 
-  // dados de exemplo
-  export let cursos = [
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    {
-      tituloBanner: "Curso de Python Avançado",
-      gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
-      desconto: 30,
-      titulo: "Python para Ciência de Dados",
-      descricao:
-        "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
-      autor: "Luiz Inácio",
-      autorInicial: "LI",
-      avatarBg: "#3498db",
-      nota: 4.7,
-      preco: 200.88,
-      precoOriginal: 287,
-    },
-    // ... restante dos cursos (mantém o que já tens)
-  ];
+  function toggleFAQ(index) {
+    openIndex = openIndex === index ? null : index;
+  }
 
-  let players = [];
+  function next() {
+    if (currentIndex < iframes.length - visibleCount) {
+      currentIndex += 1;
+    }
+  }
 
-  // Carregar API do YouTube
-  let tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
-  let firstScriptTag = document.getElementsByTagName("script")[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  function prev() {
+    if (currentIndex > 0) {
+      currentIndex -= 1;
+    }
+  }
 
-  // Cria players quando API estiver pronta
-  window.onYouTubeIframeAPIReady = () => {
-    const iframes = document.querySelectorAll(".yt-iframe");
-    iframes.forEach((iframe, index) => {
-      const player = new YT.Player(iframe);
-      players[index] = player;
-
-      // Adiciona eventos de hover em cada container
-      iframe.parentNode.addEventListener("mouseenter", () => {
-        player.playVideo();
-      });
-      iframe.parentNode.addEventListener("mouseleave", () => {
-        player.pauseVideo();
-      });
-    });
+  // Dados estáticos
+  const CURSO_EXEMPLO = {
+    tituloBanner: "Curso de Python Avançado",
+    gradient: "linear-gradient(45deg, #2c3e50, #4a6491)",
+    desconto: 30,
+    titulo: "Python para Ciência de Dados",
+    descricao:
+      "Domine Python, Pandas, NumPy e Matplotlib para análise e visualização de dados. Aprenda técnicas avançadas de machine learning.",
+    autor: "Luiz Inácio",
+    autorInicial: "LI",
+    avatarBg: "#3498db",
+    nota: 4.7,
+    preco: 200.88,
+    precoOriginal: 287,
   };
 
-  let faqs = [
+  export let cursos = Array(6).fill({ ...CURSO_EXEMPLO });
+
+  const faqs = [
     {
       question: "Quem somos?",
-      answer:
-        "O TPDPlay é uma plataforma de aulas por assinatura, totalmente voltada para prótese dentária e direcionada para técnicos e dentistas.Aqui você encontraconteúdos exclusivos sobre os mais variados tópicos do universo da prótese, como Metalurgia, Lentes de Contato, Metalo Cerâmica, entre outrosTodo mês lançamos um novo conteúdo, cada vez mais prático e didático. Temos aulas exclusivas, Lives MASTERS, Desafios, Minicursos, e muito mais!Além de Marcio Breda, Speaker Internacional, o TPDPlay conta com professores qualificados para que você aprimore suas habilidades e faça seus trabalhos com excelência.",
+      answer: "O TPDPlay é uma plataforma de aulas por assinatura...",
     },
     {
       question: "Posso cancelar minha assinatura?",
@@ -136,11 +56,55 @@
     },
   ];
 
-  let openIndex = null;
+  const iframes = Array(19).fill("https://www.youtube.com/embed/dQw4w9WgXcQ");
 
-  function toggleFAQ(index) {
-    openIndex = openIndex === index ? null : index;
+  // Estados
+  let players = [];
+  let openIndex = null;
+  let currentIndex = 0;
+  const visibleCount = 5;
+  const slideWidth = 300;
+  let youtubeAPIReady = false;
+
+  // Gerenciamento da API do YouTube
+  onMount(() => {
+    if (
+      !document.querySelector(
+        'script[src="https://www.youtube.com/iframe_api"]'
+      )
+    ) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    }
+
+    window.onYouTubeIframeAPIReady = initializePlayers;
+  });
+
+  function initializePlayers() {
+    youtubeAPIReady = true;
+    document.querySelectorAll(".yt-iframe").forEach((iframe, index) => {
+      const player = new YT.Player(iframe);
+      players[index] = player;
+
+      const container = iframe.closest(".card-video");
+      if (container) {
+        container.addEventListener("mouseenter", () => player.playVideo());
+        container.addEventListener("mouseleave", () => player.pauseVideo());
+      }
+    });
   }
+
+  onDestroy(() => {
+    players.forEach((player) => {
+      try {
+        player.destroy();
+      } catch (e) {
+        console.error("Error destroying player", e);
+      }
+    });
+    players = [];
+  });
 </script>
 
 <section class="main">
@@ -157,14 +121,17 @@
   </header>
 
   <p class="intro">Conheça a Odemy</p>
-  <video
-    src="/videos/intro.mp4"
-    controls
-    poster="/videos/intro-poster.jpg"
-    aria-label="Vídeo de apresentação da Odemy"
-  >
-    Seu navegador não suporta vídeo.
-  </video>
+  <iframe
+  class="video"
+    width="1000"
+    height="800"
+    src="https://www.youtube.com/embed/yMEBbrPpjhA?si=V9RW9Pw1LKgHEmqW"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
 
   <p class="introCurso">Nossos cursos</p>
   <div class="cards-container">
@@ -255,19 +222,63 @@
       </div>
     </div>
   </section>
+  <h2 class="intro2">Vidas que já transformamos</h2>
+  <div class="carousel">
+    <div
+      class="slides"
+      style="transform: translateX({-currentIndex * (slideWidth + 10)}px)"
+    >
+      {#each iframes as url, i (i)}
+        <iframe
+          src={url}
+          allowfullscreen
+          class="feed"
+          loading="lazy"
+          title={`Vídeo ${i + 1}`}
+        ></iframe>
+      {/each}
+    </div>
+
+    <button
+      class="prev"
+      on:click={prev}
+      disabled={currentIndex === 0}
+      aria-label="Vídeos anteriores"
+    >
+      <i class="bi bi-arrow-left-circle"></i>
+    </button>
+    <button
+      class="next"
+      on:click={next}
+      disabled={currentIndex >= iframes.length - visibleCount}
+      aria-label="Próximos vídeos"
+    >
+      <i class="bi bi-arrow-right-circle"></i>
+    </button>
+  </div>
   <div class="faq-container">
     <h2>Dúvidas? Dê uma olhada aqui.</h2>
     <p>
       Não encontrou uma resposta? Entre em contato com nosso suporte e ficaremos
       felizes em te ajudar!
     </p>
-    {#each faqs as faq, index}
+    {#each faqs as faq, index (index)}
       <div class="faq-item" class:open={openIndex === index}>
-        <button class="faq-question" on:click={() => toggleFAQ(index)}>
+        <button
+          class="faq-question"
+          on:click={() => toggleFAQ(index)}
+          aria-expanded={openIndex === index}
+          aria-controls={`faq-answer-${index}`}
+        >
           {faq.question}
         </button>
 
-        <div class="faq-answer">
+        <div
+          id={`faq-answer-${index}`}
+          class="faq-answer"
+          role="region"
+          aria-hidden={openIndex !== index}
+        >
           <p>{faq.answer}</p>
         </div>
       </div>
@@ -285,6 +296,50 @@
 </section>
 
 <style>
+  .carousel {
+    position: relative;
+    width: 100%; /* 3 * 300px */
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: max-content;
+  }
+
+  .feed {
+    border-radius: 8px;
+    border: none;
+    width: 450px;
+    height: 200px;
+    margin-right: 10px;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2563eb;
+    font-size: 5rem;
+    background: transparent;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    z-index: 1;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
   .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -415,8 +470,9 @@
     color: #fff;
   }
 
-  .planos h2 {
-    font-size: 2rem;
+  .planos h2,
+  .intro2 {
+    font-size: 3rem;
     margin-bottom: 2rem;
   }
 
@@ -531,7 +587,6 @@
     transition: 0.6s;
   }
   iframe:hover {
-    transform: scale(1.1);
   }
 
   .main {
@@ -619,12 +674,6 @@
     letter-spacing: 1px;
   }
 
-  video {
-    width: 90%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 8px;
-  }
 
   .cards-container {
     width: 1500px;
@@ -819,5 +868,37 @@
     padding: 1.5rem 0;
     background: rgba(0, 5, 20, 0.6);
     backdrop-filter: blur(10px);
+  }
+  .feed:hover {
+    transform: scale(1);
+  }
+  .video{
+    width: 1000px;
+    height: 500px;
+    border-radius: 8px;
+  }
+  .video:hover{
+    transform: scale(1);
+  }
+  .card-video {
+    overflow: visible;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-video iframe {
+    transition: transform 0.4s ease;
+    transform-origin: center;
+  }
+
+  .card-video:hover iframe {
+    transform: scale(1.15);
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .video:hover {
+    transform: scale(1) !important;
   }
 </style>

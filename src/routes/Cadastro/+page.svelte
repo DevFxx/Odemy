@@ -10,9 +10,6 @@
 </script>
 
 <section class="main">
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="/background1.mp4" type="video/mp4" />
-  </video>
   <header>
     <h1>Odemy</h1>
     <button on:click={voltar}>Voltar</button>
