@@ -119,10 +119,14 @@
       </ul>
     </nav>
   </header>
-
+  <div class="fundo_banner"></div>
   <p class="intro">Conheça a Odemy</p>
   <iframe
-  class="video"
+    style="
+  position:absolute;
+  margin-top:7rem;
+  "
+    class="video"
     width="1000"
     height="800"
     src="https://www.youtube.com/embed/yMEBbrPpjhA?si=V9RW9Pw1LKgHEmqW"
@@ -132,9 +136,36 @@
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen
   ></iframe>
-
+  <div
+    class="banner2"
+    style=" position: relative;
+    top: 560px;
+    width: 100%;
+    height: 1690px;
+    z-index: 0;"
+  >
+    <video
+      src="/banner2.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      style=" 
+    object-fit: cover;
+    height: 1250px;
+    width: 100%;
+    z-index: 0;"
+    ></video>
+  </div>
   <p class="introCurso">Nossos cursos</p>
-  <div class="cards-container">
+  <div
+    class="cards-container"
+    style="z-index:1;
+    position: absolute;
+    top: 690px;
+    width: 100%;
+    z-index: 0;"
+  >
     {#each cursos as curso, index}
       <article class="card">
         <div class="card-header">
@@ -198,7 +229,7 @@
       </article>
     {/each}
   </div>
-  <section class="planos">
+  <section class="planos" style="margin-top:1px;">
     <h2>Escolha seu Plano</h2>
     <div class="planos-container">
       <div class="plano">
@@ -296,6 +327,16 @@
 </section>
 
 <style>
+  .fundo_banner {
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    background-image: url(/banner.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 570px;
+    z-index: 0;
+  }
   .carousel {
     position: relative;
     width: 100%; /* 3 * 300px */
@@ -674,7 +715,6 @@
     letter-spacing: 1px;
   }
 
-
   .cards-container {
     width: 1500px;
     max-width: 100%;
@@ -872,12 +912,12 @@
   .feed:hover {
     transform: scale(1);
   }
-  .video{
+  .video {
     width: 1000px;
     height: 500px;
     border-radius: 8px;
   }
-  .video:hover{
+  .video:hover {
     transform: scale(1);
   }
   .card-video {
